@@ -5,17 +5,42 @@ import TodoList from './TodoList';
 // import './App.css';
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      tasks:[
+        {
+          title: 'デフォルトTODO',
+          id: 0,
+        },
+      ],
+      uniqueId: 1,
+    };
+    this.addTodo = this.addTodo.bind(this);
+  }
+
+  addTodo(title){
+    const {
+      tasks,
+      uniqueId,
+    } = this.state;
+
+    tasks.push({
+      title,
+      id: uniqueId,
+    });
+
+    this.setState({
+      tasks,
+      uniqueId: uniqueId + 1,
+    });
+  }
   render() {
-    //TODO:後々stateで管理します
-    const tasks = [
-      {title: 'Todo1つ目', id: 0},
-      {title: 'Todo2つ目', id: 1}
-    ];
     return (
       <div>
         <h1>TODO App</h1>
-        <TodoInput />
-        <TodoList tasks={tasks} />
+        <TodoInput addTodo={this.addTodo} />
+        <TodoList tasks={this.state.tasks} />
       </div>
     );
   }

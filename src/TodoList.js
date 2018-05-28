@@ -6,7 +6,7 @@ class TodoList extends Component {
     //tasks内の各TODOをTodoItemコンポーネントを用いてエレメントにしています。
     //list変数にはTodoItemエレメントの配列が入っています。
     const list = this.props.tasks.map(todo => {
-      return <TodoListItem {...todo} key={todo.id} />
+      return <TodoItem {...todo} key={todo.id} />
     });
 
     return(
